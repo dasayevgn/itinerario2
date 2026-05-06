@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praia de Tambaú — João Pessoa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ── Estilos exclusivos desta página ── */
+
+  /* Hero da praia */
+  .hero-praia {
+    min-height: 85vh;
+    background: linear-gradient(160deg, #0d3b52 0%, var(--mar) 60%, #1a9a7a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-praia::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 30%, rgba(52,152,181,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 10% 80%, rgba(26,154,122,0.2) 0%, transparent 60%);
+  }
+
+  .hero-praia-foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+  }
+
+  .breadcrumb {
+    position: absolute;
+    top: 6rem;
+    left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(245,233,208,0.7);
+    z-index: 2;
+  }
+
+  .breadcrumb a {
+    color: rgba(245,233,208,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--areia); }
+
+  .breadcrumb span { opacity: 0.5; }
+
+  .hero-praia-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero-praia-content .hero-eyebrow { margin-bottom: 0.8rem; }
+
+  .hero-praia-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .hero-praia-content h1 em {
+    font-style: italic;
+    color: var(--areia);
+  }
+
+  .hero-praia-content p {
+    font-size: 1.05rem;
+    color: rgba(245,233,208,0.85);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,233,208,0.5);
+  }
+
+  .meta-value {
+    font-size: 0.9rem;
+    color: var(--areia);
+    font-weight: 500;
+  }
+
+  /* ── Conteúdo principal ── */
+  .pagina-conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  /* Texto + info lateral */
+  .conteudo-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .texto-principal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    color: var(--texto);
+  }
+
+  .texto-principal p {
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: var(--texto-claro);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .texto-principal p strong {
+    color: var(--texto);
+    font-weight: 500;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .info-card {
+    background: var(--areia);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  .info-card h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--areia-escura);
+    font-size: 0.88rem;
+  }
+
+  .info-row:last-child { border-bottom: none; }
+
+  .info-row .label { color: var(--texto-claro); }
+  .info-row .valor { color: var(--texto); font-weight: 500; text-align: right; max-width: 55%; }
+
+  .dica-card {
+    background: var(--verde);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+
+  .dica-card h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--areia-escura);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .dica-card p {
+    font-size: 0.88rem;
+    color: rgba(245,233,208,0.75);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── Galeria de fotos ── */
+  .galeria-section {
+    background: var(--areia);
+    padding: 5rem 2rem;
+  }
+
+  .galeria-section .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .galeria-item {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: #d0d0c8;
+    cursor: pointer;
+  }
+
+  /* Foto destaque — ocupa 2 linhas na primeira coluna */
+  .galeria-item.destaque {
+    grid-row: 1 / 3;
+  }
+
+  .galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .galeria-item:hover img { transform: scale(1.05); }
+
+  /* Placeholder quando não há foto */
+  .foto-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #c8d8e0 0%, #b0c8d8 100%);
+  }
+
+  .foto-placeholder .foto-icon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+  }
+
+  .foto-placeholder .foto-legenda {
+    font-size: 0.78rem;
+    color: #5a7a8a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .foto-numero {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    background: rgba(0,0,0,0.35);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Atrações próximas ── */
+  .atracoes-section {
+    padding: 5rem 2rem;
+  }
+
+  .atracoes-section .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .atracoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .atracao-card {
+    border: 1.5px solid var(--areia-escura);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .atracao-card:hover {
+    border-color: var(--verde-claro);
+    transform: translateY(-3px);
+  }
+
+  .atracao-emoji { font-size: 1.8rem; margin-bottom: 0.8rem; }
+
+  .atracao-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: var(--texto);
+  }
+
+  .atracao-card p {
+    font-size: 0.82rem;
+    color: var(--texto-claro);
+    line-height: 1.5;
+  }
+
+  .atracao-dist {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 0.72rem;
+    color: var(--verde-claro);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Botão voltar flutuante ── */
+  .btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--verde);
+    color: var(--areia);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.7rem 1.4rem;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 2rem;
+    align-self: flex-start;
+  }
+
+  .btn-voltar:hover {
+    background: var(--verde-claro);
+    transform: translateX(-3px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .conteudo-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .sidebar { position: static; }
+
+    .galeria-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px 200px;
+    }
+
+    .galeria-item.destaque {
+      grid-column: 1 / 3;
+      grid-row: 1 / 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-praia { min-height: 70vh; padding: 2rem 1.25rem 3rem; }
+    .breadcrumb { left: 1.25rem; }
+    .pagina-conteudo { padding: 3rem 1.25rem; }
+    .galeria-section, .atracoes-section { padding: 3rem 1.25rem; }
+
+    .galeria-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(5, 200px);
+    }
+
+    .galeria-item.destaque {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero-meta { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV (igual ao principal) -->
+<nav>
+  <a class="nav-logo" href="joao_pessoa.html">João Pessoa</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="joao_pessoa.html#historia" class="nav-link">História</a></li>
+    <li><a href="joao_pessoa.html#turismo" class="nav-link">Pontos Turísticos</a></li>
+    <li><a href="joao_pessoa.html#curiosidades" class="nav-link">Curiosidades</a></li>
+  </ul>
+</nav>
+
+<!-- HERO DA PRAIA -->
+<section class="hero-praia">
+  <img
+    class="hero-praia-foto"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Praia_de_Tambaú_-_João_Pessoa_-_PB.jpg/1200px-Praia_de_Tambaú_-_João_Pessoa_-_PB.jpg"
+    alt="Vista aérea da Praia de Tambaú"
+    onerror="this.style.display='none'"
+  >
+
+  <div class="breadcrumb">
+    <a href="joao_pessoa.html">João Pessoa</a>
+    <span>›</span>
+    <a href="joao_pessoa.html#turismo">Pontos Turísticos</a>
+    <span>›</span>
+    <span style="color:var(--areia)">Praia de Tambaú</span>
+  </div>
+
+  <div class="hero-praia-content">
+    <p class="hero-eyebrow">Praia · Orla de João Pessoa</p>
+    <h1>Praia de<br><em>Tambaú</em></h1>
+    <p>O maior cartão-postal da capital paraibana — onde o mar encontra a cultura, o artesanato e o pôr do sol mais bonito da orla.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Localização</span>
+        <span class="meta-value">Bairro de Tambaú</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Extensão</span>
+        <span class="meta-value">~2 km de orla</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Melhor época</span>
+        <span class="meta-value">Set — Mar</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Entrada</span>
+        <span class="meta-value">Gratuita</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="pagina-conteudo">
+  <a href="joao_pessoa.html#turismo" class="btn-voltar">← Voltar aos pontos turísticos</a>
+
+  <div class="conteudo-grid">
+
+    <!-- Texto -->
+    <div class="texto-principal">
+      <h2>Sobre a Praia de Tambaú</h2>
+      <p>
+        A Praia de Tambaú é, sem dúvida, o <strong>símbolo maior do turismo em João Pessoa</strong>. Situada no bairro homônimo, a poucos quilômetros do centro da cidade, a praia concentra a vida social, gastronômica e cultural da capital paraibana. Seu calçadão movimentado, repleto de barracas de artesanato, restaurantes e quiosques à beira-mar, torna o local animado em qualquer hora do dia.
+      </p>
+      <p>
+        Um dos marcos mais icônicos da praia é a <strong>Estátua do Cristo</strong> — uma imagem de Cristo que fica parcialmente submersa no mar, visível durante a maré baixa. A escultura atrai curiosos e fotógrafos de todo o Brasil, tornando-se uma das imagens mais reproduzidas da Paraíba.
+      </p>
+      <p>
+        Outro ponto de destaque é o famoso <strong>Hotel Tambaú</strong>, inaugurado em 1971 e projetado pelo renomado arquiteto Sérgio Bernardes. Com sua inconfundível forma circular avançando sobre o mar, o hotel é um patrimônio da arquitetura modernista brasileira e faz parte da paisagem da praia há mais de cinco décadas.
+      </p>
+      <p>
+        A orla de Tambaú também é palco do <strong>Mercado de Artesanato Paraibano</strong>, onde artesãos locais comercializam rendas, bordados, cerâmicas e peças de couro — expressões vivas da cultura nordestina. Aos fins de semana, o movimento se intensifica com shows, apresentações culturais e a famosa <strong>Feirinha de Tambaú</strong>, um mercado noturno ao ar livre.
+      </p>
+      <p>
+        As águas calmas e mornas do Atlântico Sul, combinadas com o vento constante da brisa marinha, fazem de Tambaú um destino ideal tanto para o banho de mar quanto para a prática de <strong>stand-up paddle, caiaque e kitesurfe</strong>. A praia é adequada para todas as idades e perfis de visitantes.
+      </p>
+
+      <h2 style="margin-top: 2.5rem;">História do bairro</h2>
+      <p>
+        O bairro de Tambaú começou a se desenvolver na primeira metade do século XX, quando famílias de pescadores se instalaram na orla e construíram as primeiras habitações às margens do oceano. O nome "Tambaú" tem origem indígena, possivelmente derivado do tupi, e faz referência a uma espécie de peixe encontrada na região.
+      </p>
+      <p>
+        A partir dos anos 1970, com a inauguração do Hotel Tambaú e o crescimento do turismo no Nordeste, o bairro passou por uma intensa <strong>transformação urbana</strong>. Hoje, é um dos bairros mais valorizados e movimentados de João Pessoa, com uma rica oferta de hotéis, pousadas, restaurantes e bares voltados ao turismo.
+      </p>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <div class="info-card">
+        <h4>Informações práticas</h4>
+        <div class="info-row">
+          <span class="label">Acesso</span>
+          <span class="valor">Aberto 24h</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Estacionamento</span>
+          <span class="valor">Pago nas ruas do entorno</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Salva-vidas</span>
+          <span class="valor">Seg–Dom, 8h–17h</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Barracas</span>
+          <span class="valor">Sim, na orla toda</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Chuveiros</span>
+          <span class="valor">Disponíveis na orla</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Acessibilidade</span>
+          <span class="valor">Calçadão adaptado</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h4>Como chegar</h4>
+        <div class="info-row">
+          <span class="label">Do centro</span>
+          <span class="valor">~15 min de carro</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Do aeroporto</span>
+          <span class="valor">~20 min de carro</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Ônibus</span>
+          <span class="valor">Linhas 510, 511, 515</span>
+        </div>
+        <div class="info-row">
+          <span class="label">App</span>
+          <span class="valor">Uber / 99 disponíveis</span>
+        </div>
+      </div>
+
+      <div class="dica-card">
+        <h4>💡 Dica do local</h4>
+        <p>Vá à praia pela manhã cedo (antes das 9h) para aproveitar o mar calmo, o frescor e evitar o sol do meio-dia. Na maré baixa, você consegue ver a Estátua do Cristo — vale conferir a tabua de marés antes de ir!</p>
+      </div>
+
+      <div class="dica-card" style="background: var(--mar);">
+        <h4>📍 Localização</h4>
+        <p>Av. Almirante Tamandaré, s/n — Bairro Tambaú, João Pessoa – PB, CEP 58039-010</p>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- GALERIA DE FOTOS -->
+<section class="galeria-section">
+  <div class="container">
+    <p class="section-label">Registros do lugar</p>
+    <h2 class="section-title">Galeria de fotos</h2>
+
+    <div class="galeria-grid">
+
+      <!-- Foto destaque (ocupa 2 linhas) -->
+      <div class="galeria-item destaque">
+        <div class="foto-placeholder">
+          <span class="foto-icon">📸</span>
+          <span class="foto-legenda">Foto destaque — Vista panorâmica da orla</span>
+        </div>
+        <span class="foto-numero">Foto 1</span>
+      </div>
+
+      <!-- Foto 2 -->
+      <div class="galeria-item">
+        <div class="foto-placeholder">
+          <span class="foto-icon">🌊</span>
+          <span class="foto-legenda">Vista do mar e da faixa de areia</span>
+        </div>
+        <span class="foto-numero">Foto 2</span>
+      </div>
+
+      <!-- Foto 3 -->
+      <div class="galeria-item">
+        <div class="foto-placeholder">
+          <span class="foto-icon">🏨</span>
+          <span class="foto-legenda">Hotel Tambaú — arquitetura circular</span>
+        </div>
+        <span class="foto-numero">Foto 3</span>
+      </div>
+
+      <!-- Foto 4 -->
+      <div class="galeria-item">
+        <div class="foto-placeholder">
+          <span class="foto-icon">✝️</span>
+          <span class="foto-legenda">Estátua do Cristo no mar</span>
+        </div>
+        <span class="foto-numero">Foto 4</span>
+      </div>
+
+      <!-- Foto 5 -->
+      <div class="galeria-item">
+        <div class="foto-placeholder">
+          <span class="foto-icon">🌅</span>
+          <span class="foto-legenda">Pôr do sol na orla de Tambaú</span>
+        </div>
+        <span class="foto-numero">Foto 5</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ATRAÇÕES PRÓXIMAS -->
+<section class="atracoes-section">
+  <div class="container">
+    <p class="section-label">Nas redondezas</p>
+    <h2 class="section-title">Atrações próximas</h2>
+
+    <div class="atracoes-grid">
+      <div class="atracao-card">
+        <div class="atracao-emoji">🏖️</div>
+        <h4>Praia de Manaíra</h4>
+        <p>Praia vizinha, mais tranquila, com boa infraestrutura de quiosques e ideal para famílias.</p>
+        <span class="atracao-dist">↗ 1,5 km</span>
+      </div>
+      <div class="atracao-card">
+        <div class="atracao-emoji">🏖️</div>
+        <h4>Praia do Cabo Branco</h4>
+        <p>Próxima à Ponta do Seixas, com falésia, visual dramático e águas cristalinas.</p>
+        <span class="atracao-dist">↗ 3 km</span>
+      </div>
+      <div class="atracao-card">
+        <div class="atracao-emoji">🛍️</div>
+        <h4>Feirinha de Tambaú</h4>
+        <p>Feira noturna de artesanato, comidas típicas e shows ao vivo às sextas e sábados.</p>
+        <span class="atracao-dist">↗ 200 m</span>
+      </div>
+      <div class="atracao-card">
+        <div class="atracao-emoji">🌿</div>
+        <h4>Mata do Buraquinho</h4>
+        <p>Reserva de mata atlântica urbana com trilhas e o Jardim Botânico Benjamim Maranhão.</p>
+        <span class="atracao-dist">↗ 5 km</span>
+      </div>
+      <div class="atracao-card">
+        <div class="atracao-emoji">🍤</div>
+        <h4>Restaurantes na Orla</h4>
+        <p>Dezenas de opções de frutos do mar frescos, tapiocas e culinária nordestina típica.</p>
+        <span class="atracao-dist">↗ Na praia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Feito com orgulho sobre <strong>João Pessoa, Paraíba</strong> — A Cidade do Sol Nascente 🌅</p>
+  <p style="margin-top: 0.5rem; font-size: 0.78rem;">Capital do estado da Paraíba · Brasil · Nordeste</p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
