@@ -551,6 +551,7 @@ footer strong { color: rgba(255,255,255,0.7); font-weight: 500; }
     font-size: 1.8rem;
   }
 }
+
   .hero-praia {
     min-height: 85vh;
     background: linear-gradient(160deg, #0d3b52 0%, var(--mar) 60%, #1a9a7a 100%);
