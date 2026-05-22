@@ -1381,3 +1381,187 @@ footer strong { color: rgba(255,255,255,0.7); font-weight: 500; }
   .cach-num   { font-size: 2rem; }
   .cach-card-grande { padding: 1.8rem; }
 }
+
+:root {
+  --dino-laranja: #d97b2d;
+  --dino-terra: #8b5a2b;
+  --dino-areia: #d8b07a;
+  --dino-noite: #24160f;
+}
+
+.nav-link-sousa {
+  color: var(--dino-laranja) !important;
+}
+
+.nav-link-sousa:hover {
+  color: #fff !important;
+}
+
+/* HERO SOUSA */
+.hero-sousa {
+  background:
+    linear-gradient(160deg,
+      #2a160d 0%,
+      #4b2b18 45%,
+      #8b5a2b 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-sousa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(216,176,122,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(217,123,45,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-sousa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 100%),
+    radial-gradient(2px 2px at 70% 40%, rgba(255,255,255,0.1) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.12) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-sousa .hero-eyebrow,
+.hero-sousa h1,
+.hero-sousa .hero-sub,
+.hero-sousa .hero-badges,
+.hero-sousa .scroll-hint {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-sousa .badge {
+  border-color: rgba(216,176,122,0.35);
+  color: var(--dino-areia);
+}
+
+/* SECAO DINOSSAUROS */
+.dinossauro-section {
+  background:
+    linear-gradient(135deg,
+      #f8f1e5 0%,
+      #f5e4ca 50%,
+      #f8f1e5 100%);
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dinossauro-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 40% 60% at 5% 50%, rgba(139,90,43,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 40% at 95% 30%, rgba(217,123,45,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.dino-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.dino-texto .section-label {
+  color: var(--dino-laranja);
+}
+
+.dino-texto p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--texto-claro);
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+
+.dino-card-grande {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 32px rgba(139,90,43,0.1);
+  border-left: 4px solid var(--dino-laranja);
+  margin-bottom: 1.5rem;
+}
+
+.dino-icone {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.dino-card-grande h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--texto);
+  margin-bottom: 0.8rem;
+}
+
+.dino-card-grande p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  color: var(--texto-claro);
+}
+
+.dino-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.dino-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.dino-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--dino-laranja);
+  line-height: 1;
+}
+
+.dino-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dino-terra);
+}
+
+@media (max-width: 900px) {
+  .dino-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .dino-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .dino-stats {
+    gap: 1.5rem;
+  }
+
+  .dino-num {
+    font-size: 2rem;
+  }
+
+  .dino-card-grande {
+    padding: 1.8rem;
+  }
+}
